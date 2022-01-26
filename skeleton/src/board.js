@@ -95,8 +95,8 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip = []){
   if (!this.isOccupied(newPos)) return [];
   if(this.isMine(newPos, color)) return piecesToFlip;
 
-  piecesToFlip.push(this.getPiece(newPos));
-  this._positionsToFlip(newPos, color, dir, piecesToFlip);
+  piecesToFlip.push(newPos);
+  return this._positionsToFlip(newPos, color, dir, piecesToFlip);
 };
 
 /**
@@ -105,6 +105,7 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip = []){
  * color being flipped.
  */
 Board.prototype.validMove = function (pos, color) {
+  if(this.isOccupied(pos))
 };
 
 /**
