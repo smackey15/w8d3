@@ -27,10 +27,21 @@ function Board () {
   this.grid = _makeGrid();
 }
 
+// Board.DIRS = [
+//   [ 0,  1], [ 1,  1], [ 1,  0],
+//   [ 1, -1], [ 0, -1], [-1, -1],
+//   [-1,  0], [-1,  1]
+// ];
+
 Board.DIRS = [
-  [ 0,  1], [ 1,  1], [ 1,  0],
-  [ 1, -1], [ 0, -1], [-1, -1],
-  [-1,  0], [-1,  1]
+  [0, 1],
+  [1, 1],
+  [1, 0],
+  [1, -1],
+  [0, -1],
+  [-1, -1],
+  [-1, 0],
+  [-1, 1],
 ];
 
 /**
@@ -105,10 +116,12 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip = []){
  * color being flipped.
  */
 Board.prototype.validMove = function (pos, color) {
-  if(this.isOccupied(pos)) return false;
-  if(!this.isValidPos(pos)) return false;
-  if(this.isMine(pos, color)) return false;
-  return true;
+  for(let direction of Board.DIRS){
+    if(this._positionsToFlip(pos, color, direction).length > 0){
+      return true;
+    }
+  }
+  return false;
 };
 
 /**
