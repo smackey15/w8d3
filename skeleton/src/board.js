@@ -51,7 +51,11 @@ function _inBounds(val) {
  * throwing an Error if the position is invalid.
  */
 Board.prototype.getPiece = function (pos) {
-  //index into grid and return 
+  const [x, y] = pos;
+  if(!this.isValidPos(pos)){
+    console.log(new Error("Not valid pos!"));
+  }
+  if(this.grid[x][y]) return this.grid[x][y];
 };
 
 /**
