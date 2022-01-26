@@ -91,6 +91,16 @@ Board.prototype.isOccupied = function (pos) {
  */
 Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
   if(!this.isValidPos(pos)) return [];
+  if(!this.isOccupied(pos)) return [];
+
+  for(let direction of Board.DIRS){
+    // const newPosition = [direction[0] + pos[0], direction[1] + pos[1]];
+    // const piece = this.getPiece(pos);
+    this._positionsToFlip(pos, this.getPiece(pos).color, direction, piecesToFlip);
+  }
+  
+
+  return piecesToFlip;
 };
 
 /**
