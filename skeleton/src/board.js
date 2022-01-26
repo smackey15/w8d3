@@ -141,9 +141,12 @@ Board.prototype.placePiece = function (pos, color) {
         piece.flip();
       }
     }  
+    this.grid[pos[0]][pos[1]] = new Piece(color);
   }
 };
 
+const board = new Board();
+board.placePiece([2,3],"black");
 /**
  * Produces an array of all valid positions on
  * the Board for a given color.
