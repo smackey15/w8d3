@@ -13,10 +13,11 @@ function _makeGrid () {
   for(let i = 0; i < 8; i++){
     array[i] = new Array(8);
   }
-  array[3][4] && array[4][3] = 'black';
-  array[3][3] && array[4][4] = 'white';
+  array[3][4] = new Piece('black');
+  array[4][3] = new Piece('black');
+  array[3][3] = new Piece('white');
+  array[4][4] = new Piece('white');
   return array;
-  
 }
 
 /**
@@ -36,13 +37,21 @@ Board.DIRS = [
  * Checks if a given position is on the Board.
  */
 Board.prototype.isValidPos = function (pos) {
+  const [x, y] = pos;
+  return _inBounds(x) && _inBounds(y);
 };
+
+function _inBounds(val) {
+  if(val > 7 || val < 0) return false;
+  return true;
+}
 
 /**
  * Returns the piece at a given [x, y] position,
  * throwing an Error if the position is invalid.
  */
 Board.prototype.getPiece = function (pos) {
+  //index into grid and return 
 };
 
 /**
